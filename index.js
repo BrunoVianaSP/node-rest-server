@@ -36,7 +36,7 @@ router.get('/stuff', (request, response) => {
 
 
 // this array is used for identification of allowed origins in CORS
-const originWhitelist = ['http://localhost:3000', 'https://example.net'];
+const originWhitelist = ['http://localhost:3000', 'https://heroku-test-node-api.herokuapp.com/'];
 
 // middleware route that all requests pass through
 router.use((request, response, next) => {
