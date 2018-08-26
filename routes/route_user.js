@@ -65,7 +65,7 @@ router.route('/add').post(function (req, res) {
         res.status(400).send("unable to login");
       else {
         console.log("found user:", user);
-        res.json('Successfully logged in');
+        res.status(200).json('Successfully logged in');
       }
     });
   });
