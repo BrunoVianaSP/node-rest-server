@@ -1,13 +1,29 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 const app = express();
 const router = express.Router();
 const port = 3000;
+const config = require('./db');
+const User = require('./models/User');
+const userRoute = require('./routes/route_user');
+
+app.use(bodyParser.json());
+
+app.use('/user', userRoute);
 
 // url: http://localhost:3000/
 app.get('/', (request, response) => response.send('Hello World'));
 
 // all routes prefixed with /api
-app.use('/api', router);
+// app.use('/api', router);
+
+// connect to database
+mongoose.connect(config.DB).then(
+  () => {console.log('Database is connected') },
+  err => { console.log('Can not connect to the database' +err)
+});
 
 // using router.get() to prefix our path
 // url: http://localhost:3000/api/
@@ -15,8 +31,35 @@ router.get('/', (request, response) => {
   response.json({message: 'Hello, welcome to my server'});
 });
 
-// set the server to listen on port 3000
-app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+
+
+// // Database connection
+// // Retrieve
+// var MongoClient = require('mongodb').MongoClient;
+
+// // Connect to the db
+// MongoClient.connect("mongodb://localhost:27017/nodeservice", function(err, db) {
+//   if(err) { return console.dir(err); }
+
+//   db.collection('test', function(err, collection) {});
+
+//   db.collection('test', {w:1}, function(err, collection) {});
+
+//   db.createCollection('test', function(err, collection) {});
+
+//   db.createCollection('test', {w:1}, function(err, collection) {});
+
+// });
+
+
+
+
+
+
+
+
 
 
 
@@ -57,3 +100,9 @@ router.use((request, response, next) => {
   // push through to the proper route
   next();
 });
+
+
+
+
+// set the server to listen on port 3000
+app.listen(port, () => console.log(`Listening on port ${port}`));
