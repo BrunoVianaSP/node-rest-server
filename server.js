@@ -41,6 +41,7 @@ function handleError(res, reason, message, code) {
 /*  "/api/contacts"
  *    GET: finds all contacts
  *    POST: creates a new contact
+ *    sample post: curl -H "Content-Type: application/json" -d '{"name":"mLab Support", "email": "support@mlab.com"}' https://heroku-test-node-api.herokuapp.com/api/contacts
  */
 app.get("/api/contacts", function(req, res) {
     db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
