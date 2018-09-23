@@ -114,5 +114,9 @@ router.use((request, response, next) => {
 });
 
 
+app.listen(process.env.PORT || port, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
 // set the server to listen on port 3000
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// app.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`) );
