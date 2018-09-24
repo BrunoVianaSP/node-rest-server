@@ -5,6 +5,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var CONTACTS_COLLECTION = "contacts";
+var USERS_COLLECTION = "users";
 
 var app = express();
 app.use(bodyParser.json());
@@ -109,6 +110,117 @@ app.delete("/api/contacts/:id", function(req, res) {
         }
     });
 });
+
+// #############################################################################################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  "/api/user"
+ *    GET: finds all user
+ *    POST: creates a new user
+ *    sample post: curl -H "Content-Type: application/json" -d '{"name":"Admin User", "email": "admin@server.com", "email": "admin"}' https://heroku-test-node-api.herokuapp.com/api/users
+ */
+app.get("/api/users", function(req, res) {
+    db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+        if (err) {
+            handleError(res, err.message, "Failed to get users.");
+        } else {
+            res.status(200).json(docs);
+        }
+    });
+});
+
+app.post("/api/users", function(req, res) {
+    var newUser = req.body;
+    newUser.createDate = new Date();
+
+    if (!req.body.username) {
+        handleError(res, "Invalid user input", "Must provide a username.", 400);
+    } else {
+        db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to create new users.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
+    }
+});
+
+/*  "/api/users/:username"
+ *    GET: find user by username
+ *    PUT: update user by username
+ *    DELETE: deletes user by username
+ */
+
+app.get("/api/users/:username", function(req, res) {
+    db.collection(USERS_COLLECTION).findOne({ _id: new ObjectID(req.params.username) }, function(err, doc) {
+        if (err) {
+            handleError(res, errmessage, "Failed to get user");
+        } else {
+            res.status(200).json(doc);
+        }
+    });
+});
+
+app.put("/api/users/:username", function(req, res) {
+    var updateDoc = req.body;
+    delete updateDoc.username;
+
+    db.collection(USERS_COLLECTION).updateOne({ username: req.params.username }, updateDoc, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to update user");
+        } else {
+            updateDoc.username = req.params.username;
+            res.status(200).json(updateDoc);
+        }
+    });
+});
+
+app.delete("/api/users/:username", function(req, res) {
+    db.collection(USERS_COLLECTION).deleteOne({ username: req.params.username }, function(err, result) {
+        if (err) {
+            handleError(res, err.message, "Failed to delete user");
+        } else {
+            res.status(200).json(req.params.username);
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
