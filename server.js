@@ -134,7 +134,7 @@ app.delete("/api/contacts/:id", function(req, res) {
 /*  "/api/user"
  *    GET: finds all user
  *    POST: creates a new user
- *    sample post: curl -H "Content-Type: application/json" -d '{"name":"Admin User", "email": "admin@server.com", "email": "admin"}' https://heroku-test-node-api.herokuapp.com/api/users
+ *    sample post: curl -H "Content-Type: application/json" -d '{"name":"Admin User", "email": "admin@server.com", "username": "admin"}' c
  */
 app.get("/api/users", function(req, res) {
     db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
