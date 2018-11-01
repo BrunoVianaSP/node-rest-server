@@ -27,7 +27,7 @@ router.route('/add').post(function (req, res) {
       }
     });
   });
-
+ 
   //  Defined update route
   router.route('/update/:username').post(function (req, res) {
     User.find({username: req.params.username}, function(err, user) {
