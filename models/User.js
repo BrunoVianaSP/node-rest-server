@@ -25,9 +25,12 @@ var User = new Schema({
   },
   hash: {
     type: String
-  }
-},{
-    collection: 'user'
-}, {strict: true});
+  },
+  createdDate: { type: Date, default: Date.now }
+},
+
+{ collection: 'user' }, {strict: true}
+
+);
 
 module.exports = mongoose.model('User', User);

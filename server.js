@@ -55,8 +55,7 @@ app.get("/api/users", function(req, res) {
 });
 
 app.post("/api/users", function(req, res) {
-    var newUser = req.body;
-    newUser.createDate = new Date();
+    var newUser = req.body; 
 
     if (!newUser.email) {
         handleError(res, "Invalid user input", "Must provide a email.", 400);
@@ -96,13 +95,13 @@ app.post("/api/users", function(req, res) {
     }
 });
 
-app.get("/api/users/:email/:password", function(req, res) {
-    db.collection(USERS_COLLECTION).findOne({ email: req.params.email, password: req.params.password}, function(err, doc) {
+app.post("/api/users/login", function(req, res) {
+    db.collection(USERS_COLLECTION).findOne({ email: req.body.email, password: req.body.password}, function(err, doc) {
         if (err) {
             handleError(res, errmessage, "Failed to get user");
         } else {
             var foundUser = doc;
-            if(foundUser.email === req.params.email && foundUser.password === req.params.password) {
+            if(foundUser.email === req.body.email && foundUser.password === req.body.password) {
                 res.status(200).json(foundUser);
             } else {
                 res.status(200).json({});
@@ -110,6 +109,21 @@ app.get("/api/users/:email/:password", function(req, res) {
         }
     });
 });
+
+// app.get("/api/users/:email/:password", function(req, res) {
+//     db.collection(USERS_COLLECTION).findOne({ email: req.params.email, password: req.params.password}, function(err, doc) {
+//         if (err) {
+//             handleError(res, errmessage, "Failed to get user");
+//         } else {
+//             var foundUser = doc;
+//             if(foundUser.email === req.params.email && foundUser.password === req.params.password) {
+//                 res.status(200).json(foundUser);
+//             } else {
+//                 res.status(200).json({});
+//             }
+//         }
+//     });
+// });
 
 app.put("/api/users/:email/:password/:confirmPassword", function(req, res) {
     var updateDoc = req.body;
