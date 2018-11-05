@@ -101,7 +101,7 @@ app.post("/api/users/login", function(req, res) {
             handleError(res, errmessage, "Failed to get user");
         } else {
             var foundUser = doc;
-            if(foundUser.email === req.body.email && foundUser.password === req.body.password) {
+            if(!foundUser && (foundUser.email === req.body.email && foundUser.password === req.body.password) ) {
                 res.status(200).json(foundUser);
             } else {
                 handleError(res, err.message, "User not found");
@@ -110,21 +110,7 @@ app.post("/api/users/login", function(req, res) {
     });
 });
 
-// app.get("/api/users/:email/:password", function(req, res) {
-//     db.collection(USERS_COLLECTION).findOne({ email: req.params.email, password: req.params.password}, function(err, doc) {
-//         if (err) {
-//             handleError(res, errmessage, "Failed to get user");
-//         } else {
-//             var foundUser = doc;
-//             if(foundUser.email === req.params.email && foundUser.password === req.params.password) {
-//                 res.status(200).json(foundUser);
-//             } else {
-//                 res.status(200).json({});
-//             }
-//         }
-//     });
-// });
-
+ 
 app.put("/api/users/:email/:password/:confirmPassword", function(req, res) {
     var updateDoc = req.body;
     delete updateDoc.username;
