@@ -12,19 +12,22 @@ var User = new Schema({
   },
   email: {
     type: String,
+    required: true,
     unique: true
   },
   password: {
-    type: String
+    type: String,
+    required: true
   },
   confirmPassword: {
-    type: String
+    type: String,
+    required: true
   },
   hash: {
     type: String
   }
 },{
     collection: 'user'
-});
+}, {strict: true});
 
 module.exports = mongoose.model('User', User);

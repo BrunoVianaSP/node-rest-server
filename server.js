@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-var USERS_COLLECTION = "users";
+var USERS_COLLECTION = "User";
 
 var app = express();
 app.use(bodyParser.json());
@@ -65,11 +65,24 @@ app.post("/api/users", function(req, res) {
     } else if (newUser.password != newUser.confirmPassword) {
         handleError(res, "Invalid user input", "Must provide an equals password confirmation.", 400);
     } else {
-        db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+
+
+        db.collection(USERS_COLLECTION).findOne({ email: newUser.email, password: newUser.password}, function(err, doc) {
             if (err) {
-                handleError(res, err.message, "Failed to create new users.");
+                console.log("User does not exist. Creating a new one with email: " + newUser.email);
+
+                db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+                    if (err) {
+                        handleError(res, err.message, "Failed to create new user with email: " + newUser.email);
+                    } else {
+                        var createdUser = doc.ops[0];
+                        createdUser.newUser = true;
+                        res.status(201).json(doc.ops[0]);
+                    }
+                });
+
             } else {
-                res.status(201).json(doc.ops[0]);
+                res.status(200).json(doc);
             }
         });
     }
