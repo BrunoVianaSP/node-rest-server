@@ -99,15 +99,26 @@ app.put("/api/users/:email/:password/:confirmPassword", function(req, res) {
     });
 });
 
-app.delete("/api/users/:username", function(req, res) {
-    db.collection(USERS_COLLECTION).deleteOne({ username: req.params.username }, function(err, result) {
+app.delete("/api/users/:email", function(req, res) {
+    db.collection(USERS_COLLECTION).deleteOne({ email: req.params.email }, function(err, result) {
         if (err) {
             handleError(res, err.message, "Failed to delete user");
         } else {
-            res.status(200).json(req.params.username);
+            res.status(200).json(req.params.email);
         }
     });
 });
+
+app.delete("/api/users/", function(req, res) {
+    db.collection(USERS_COLLECTION).deleteMany({}, function(err, result) {
+        if (err) {
+            handleError(res, err.message, "Failed to delete all users");
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
 
 /*  "/api/users/:username"
  *    GET: find user by username
