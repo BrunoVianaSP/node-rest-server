@@ -101,10 +101,14 @@ app.post("/api/users/login", function(req, res) {
             handleError(res, errmessage, "Failed to get user");
         } else {
             var foundUser = doc;
-            if(!foundUser && (foundUser.email === req.body.email && foundUser.password === req.body.password) ) {
-                res.status(200).json(foundUser);
-            } else {
-                handleError(res, err.message, "User not found");
+            
+            if( foundUser != null && foundUser != undefined ) {
+
+                if (foundUser.email === req.body.email && foundUser.password === req.body.password) {
+                    res.status(200).json(foundUser);
+                } else {
+                    handleError(res, err.message, "User not found");
+                }
             }
         }
     });
