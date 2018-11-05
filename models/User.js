@@ -15,7 +15,10 @@ var User = new Schema({
   password: {
     type: String
   },
-  application: {
+  confirmPassword: {
+    type: String
+  },
+  hash: {
     type: String
   }
 },{
