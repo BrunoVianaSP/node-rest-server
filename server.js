@@ -58,10 +58,10 @@ app.post("/api/users", function(req, res) {
     var newUser = req.body;
     newUser.createDate = new Date();
 
-    if (!newUser.username) {
-        handleError(res, "Invalid user input", "Must provide a username.", 400);
-    } else if (!newUser.password) {
-        handleError(res, "Invalid user input", "Must provide a valid password.", 400);
+    if (!newUser.email) {
+        handleError(res, "Invalid user input", "Must provide a email.", 400);
+    } else if (!newUser.password || newUser.password.length < 4) {
+        handleError(res, "Invalid user input", "Must provide a valid password with more than 3 characteres.", 400);
     } else if (newUser.password != newUser.confirmPassword) {
         handleError(res, "Invalid user input", "Must provide an equals password confirmation.", 400);
     } else {
@@ -75,14 +75,8 @@ app.post("/api/users", function(req, res) {
     }
 });
 
-/*  "/api/users/:username"
- *    GET: find user by username
- *    PUT: update user by username
- *    DELETE: deletes user by username
- */
-
-app.get("/api/users/:username", function(req, res) {
-    db.collection(USERS_COLLECTION).findOne({ _id: new ObjectID(req.params.username) }, function(err, doc) {
+app.get("/api/users/:email/:password", function(req, res) {
+    db.collection(USERS_COLLECTION).findOne({ email: req.params.email, password: req.params.password}, function(err, doc) {
         if (err) {
             handleError(res, errmessage, "Failed to get user");
         } else {
@@ -91,7 +85,7 @@ app.get("/api/users/:username", function(req, res) {
     });
 });
 
-app.put("/api/users/:username", function(req, res) {
+app.put("/api/users/:email/:password/:confirmPassword", function(req, res) {
     var updateDoc = req.body;
     delete updateDoc.username;
 
@@ -114,6 +108,45 @@ app.delete("/api/users/:username", function(req, res) {
         }
     });
 });
+
+/*  "/api/users/:username"
+ *    GET: find user by username
+ *    PUT: update user by username
+ *    DELETE: deletes user by username
+ */
+// app.get("/api/users/:username", function(req, res) {
+//     db.collection(USERS_COLLECTION).findOne({ _id: new ObjectID(req.params.username) }, function(err, doc) {
+//         if (err) {
+//             handleError(res, errmessage, "Failed to get user");
+//         } else {
+//             res.status(200).json(doc);
+//         }
+//     });
+// });
+
+// app.put("/api/users/:username", function(req, res) {
+//     var updateDoc = req.body;
+//     delete updateDoc.username;
+
+//     db.collection(USERS_COLLECTION).updateOne({ username: req.params.username }, updateDoc, function(err, doc) {
+//         if (err) {
+//             handleError(res, err.message, "Failed to update user");
+//         } else {
+//             updateDoc.username = req.params.username;
+//             res.status(200).json(updateDoc);
+//         }
+//     });
+// });
+
+// app.delete("/api/users/:username", function(req, res) {
+//     db.collection(USERS_COLLECTION).deleteOne({ username: req.params.username }, function(err, result) {
+//         if (err) {
+//             handleError(res, err.message, "Failed to delete user");
+//         } else {
+//             res.status(200).json(req.params.username);
+//         }
+//     });
+// });
 
 
 
