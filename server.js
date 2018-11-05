@@ -69,20 +69,28 @@ app.post("/api/users", function(req, res) {
 
         db.collection(USERS_COLLECTION).findOne({ email: newUser.email, password: newUser.password}, function(err, doc) {
             if (err) {
-                console.log("User does not exist. Creating a new one with email: " + newUser.email);
-
-                db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
-                    if (err) {
-                        handleError(res, err.message, "Failed to create new user with email: " + newUser.email);
-                    } else {
-                        var createdUser = doc.ops[0];
-                        createdUser.newUser = true;
-                        res.status(201).json(doc.ops[0]);
-                    }
-                });
-
+                handleError(res, err.message, "Failed to find user with email: " + newUser.email);
             } else {
-                res.status(200).json(doc);
+                
+                var foundUser = doc;
+
+                if(!foundUser) {
+                    console.log("User does not exist. Creating a new one with email: " + newUser.email);
+
+                    db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+                        if (err) {
+                            handleError(res, err.message, "Failed to create new user with email: " + newUser.email);
+                        } else {
+                            var createdUser = doc.ops[0];
+                            createdUser.newUser = true;
+                            res.status(201).json(createdUser);
+                        }
+                    });
+
+                } else {
+                    console.log("User with email: " + newUser.email + " already found!");
+                    res.status(200).json(doc);
+                }
             }
         });
     }
