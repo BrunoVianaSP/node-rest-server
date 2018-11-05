@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-var USERS_COLLECTION = "User";
+var USERS_COLLECTION = "user";
 
 var app = express();
 app.use(bodyParser.json());
@@ -101,7 +101,12 @@ app.get("/api/users/:email/:password", function(req, res) {
         if (err) {
             handleError(res, errmessage, "Failed to get user");
         } else {
-            res.status(200).json(doc);
+            var foundUser = doc;
+            if(foundUser.email === req.params.email && foundUser.password === req.params.password) {
+                res.status(200).json(foundUser);
+            } else {
+                res.status(200).json({});
+            }
         }
     });
 });
