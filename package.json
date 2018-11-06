@@ -14,8 +14,9 @@
     "ws": "3.3.2"
   },
   "dependencies": {
-    "express": "*",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "*",
     "mongodb": "^3.1.4",
     "mongoose": "^5.2.10"
   }
