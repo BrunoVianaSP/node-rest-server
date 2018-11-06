@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('./shared/jwt');
-const errorHandler = require('./shared/error-handler');
+const errorHandler = require('./shared/error_handler');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
