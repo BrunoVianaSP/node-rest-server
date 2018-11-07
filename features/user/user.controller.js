@@ -13,10 +13,8 @@ router.put('/:id', update);
 router.delete('/:id', _delete);
   
 function authenticate(req, res, next) {
-    console.log("authenticate controller");    
-    console.log("User: ", req.body);
     userService.authenticate(req.body)
-        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
+        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username/email or password is incorrect' }))
         .catch(err => next(err));
 }
 
