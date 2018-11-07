@@ -1,17 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const userService = require('./user.service');
-
+ 
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/', getAll);
+router.get('/test', getAll);
 router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
+router.get('/test', test);
 
 module.exports = router;
+
+function test(req, res, next) {
+    res.json({message: "Success! Test enpoint working fine!"})
+}
 
 function authenticate(req, res, next) {
     userService.authenticate(req.body)
