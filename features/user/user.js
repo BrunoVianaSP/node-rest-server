@@ -9,8 +9,8 @@ const schema = new Schema({
         unique: true
       },
     hash: { type: String, required: true },
-    firstName: { type: String, required: true },
-    lastName: { type: String, rired: true },
+    firstName: { type: String, required: false },
+    lastName: { type: String, required: false },
     createdDate: { type: Date, default: Date.now }
 });
 

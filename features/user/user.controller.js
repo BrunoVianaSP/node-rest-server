@@ -11,15 +11,10 @@ router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
-router.get('/test', test);
-
-module.exports = router;
-
-function test(req, res, next) {
-    res.json({message: "Success! Test enpoint working fine!"})
-}
-
+  
 function authenticate(req, res, next) {
+    console.log("authenticate controller");    
+    console.log("User: ", req.body);
     userService.authenticate(req.body)
         .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
         .catch(err => next(err));
@@ -60,3 +55,5 @@ function _delete(req, res, next) {
         .then(() => res.json({}))
         .catch(err => next(err));
 }
+
+module.exports = router;
