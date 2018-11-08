@@ -13,6 +13,7 @@ const schema = new Schema({
     city: { type: String, required: false },
     side: { type: String, required: false },
     address: { type: String, required: false },
+    phone: { type: String, required: false },
     birth: { type: Date, required: false },
     agreement: { type: Boolean, required: true },
     createdDate: { type: Date, default: Date.now }
