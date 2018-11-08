@@ -8,5 +8,5 @@ mongoose.connect(config.connectionString);
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    User: require('../features/user/user')
+    User: require('../features/user/user.model')
 };
