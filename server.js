@@ -22,13 +22,6 @@ app.use('/user', userController);
 // global error handler
 app.use(errorHandler);
 
-
-app._router.stack.forEach(function(r){
-    if (r.route && r.route.path){
-      console.log(r.route.path)
-    }
-  })
-
 // start server
 const port = process.env.NODE_ENV === 'production' ? 80 : 1313;
 const server = app.listen(port, function () {
