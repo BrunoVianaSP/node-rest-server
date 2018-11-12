@@ -41,7 +41,7 @@ function _delete(req, res, next) {
 }
 
 function forgot(req, res, next) {
-    userService.recoverPassword(req.body)
+    userService.recoverPassword(req.params.email)
     .then(user => user ? res.json(user) : res.status(400).json({ message: 'User not found.' }))
     .catch(err => next(err));
 }

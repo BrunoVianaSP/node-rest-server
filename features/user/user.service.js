@@ -71,12 +71,11 @@ async function _delete(id) {
     await User.findByIdAndRemove(id);
 }
 
-async function recoverPassword({ email }) {
+async function recoverPassword(email) {
     const user = await User.findOne({ email });
     if (user) {
         return user;
-    } else {
-        return null;
-    }
+    } 
+    return null;
 }
 
