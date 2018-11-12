@@ -5,7 +5,7 @@ const userService = require('./user.service');
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
-router.post('/forgot', forgot);
+router.get('/forgot', forgot);
 router.get('/', getAll);
 router.put('/:id', update);
 router.delete('/:id', _delete);
@@ -41,8 +41,8 @@ function _delete(req, res, next) {
 }
 
 function forgot(req, res, next) {
-    userService.recoverPassword(req.params.email)
-    .then(user => user ? res.json(user) : res.status(400).json({ message: 'User not found.' }))
+    userService.recoverPassword(req.query.email)
+    .then(user => user ? res.status(200).json({ message: 'User exists.' }) : res.status(400).json({ message: 'User not found.' }))
     .catch(err => next(err));
 }
 module.exports = router;

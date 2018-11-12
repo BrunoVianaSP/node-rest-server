@@ -10,6 +10,7 @@ module.exports = {
     getAll,
     create,
     update,
+    getById,
     recoverPassword,
     delete: _delete
 };
@@ -28,6 +29,10 @@ async function authenticate({ email, password }) {
 
 async function getAll() {
     return await User.find().select('-hash');
+}
+
+async function getById(id) {
+    return await User.findById(id).select('-hash');
 }
 
 async function create(userParam) {
@@ -72,10 +77,12 @@ async function _delete(id) {
 }
 
 async function recoverPassword(email) {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
+ 
     if (user) {
         return user;
     } 
+
     return null;
 }
 
