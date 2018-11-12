@@ -8,9 +8,9 @@ const TOKEN_EXPIRE_MILLISECONDS = 18000;
 module.exports = {
     authenticate,
     getAll,
-    getById,
     create,
     update,
+    recoverPassword,
     delete: _delete
 };
  
@@ -28,10 +28,6 @@ async function authenticate({ email, password }) {
 
 async function getAll() {
     return await User.find().select('-hash');
-}
-
-async function getById(id) {
-    return await User.findById(id).select('-hash');
 }
 
 async function create(userParam) {
@@ -74,3 +70,13 @@ async function update(id, userParam) {
 async function _delete(id) {
     await User.findByIdAndRemove(id);
 }
+
+async function recoverPassword({ email }) {
+    const user = await User.findOne({ email });
+    if (user) {
+        return user;
+    } else {
+        return null;
+    }
+}
+
