@@ -29,8 +29,8 @@ function getAll(req, res, next) {
 }
 
 function update(req, res, next) {
-    userService.update(req.params.id, req.body)
-        .then(() => res.json({}))
+    userService.update(req.body)
+        .then(() => res.json({message: "Password updated!"}))
         .catch(err => next(err));
 }
 
@@ -42,7 +42,7 @@ function _delete(req, res, next) {
 
 function forgot(req, res, next) {
     userService.recoverPassword(req.query.email)
-    .then(user => user ? res.status(200).json({ message: 'User exists.' }) : res.status(400).json({ message: 'User not found.' }))
+    .then(user => user ? res.status(200).json({ token: user.token }) : res.status(400).json({ message: 'User not found.' }))
     .catch(err => next(err));
 }
 

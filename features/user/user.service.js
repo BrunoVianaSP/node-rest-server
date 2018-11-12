@@ -52,13 +52,20 @@ async function create(userParam) {
     await user.save();
 }
 
-async function update(id, userParam) {
-    const user = await User.findById(id);
+function isMatchOfPassword(user) {
+    return user.password === user.confirmPassword;
+}
+
+async function update(userParam) {
+    // console.log({userParam});
+
+    const user = await User.findOne({ email: userParam.email });
 
     // validate
     if (!user) throw 'User not found';
-    if (user.email !== userParam.email && await User.findOne({ email: userParam.email })) {
-        throw 'Username "' + userParam.email + '" is already taken';
+    
+    if(!isMatchOfPassword(userParam)) {
+        throw 'Typed passwords do not match';
     }
 
     // hash password if it was entered
@@ -71,7 +78,7 @@ async function update(id, userParam) {
 
     await user.save();
 }
-
+ 
 async function _delete(id) {
     await User.findByIdAndRemove(id);
 }
@@ -80,9 +87,12 @@ async function recoverPassword(email) {
     const user = await User.findOne({ email: email });
  
     if (user) {
-        return user;
+        const { hash, ...userWithoutHash } = user.toObject();
+        const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: TOKEN_EXPIRE_MILLISECONDS });
+        return {
+            ...userWithoutHash,
+            token
+        };
     } 
-
-    return null;
 }
 
