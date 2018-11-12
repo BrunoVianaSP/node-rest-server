@@ -7,7 +7,7 @@ router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/forgot', forgot);
 router.get('/', getAll);
-router.put('/:id', update);
+router.put('/update', update);
 router.delete('/:id', _delete);
   
 function authenticate(req, res, next) {
