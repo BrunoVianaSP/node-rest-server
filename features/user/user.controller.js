@@ -45,4 +45,5 @@ function forgot(req, res, next) {
     .then(user => user ? res.status(200).json({ message: 'User exists.' }) : res.status(400).json({ message: 'User not found.' }))
     .catch(err => next(err));
 }
+
 module.exports = router;
