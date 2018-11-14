@@ -8,6 +8,7 @@ const errorHandler = require('./shared/error_handler');
 
 // controllers
 const userController = require('./features/user/user.controller');
+const teamController = require('./features/team/team.controller');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,6 +19,7 @@ app.use(jwt());
 
 // api routes
 app.use('/user', userController);
+app.use('/team', teamController);
 
 // global error handler
 app.use(errorHandler);
