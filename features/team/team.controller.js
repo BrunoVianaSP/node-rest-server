@@ -21,7 +21,7 @@ function getAll(req, res, next) {
 
 function update(req, res, next) {
     teamService.update(req.body)
-        .then(() => res.json({message: "Password updated!"}))
+        .then(() => res.json({message: "Team updated!"}))
         .catch(err => next(err));
 }
  

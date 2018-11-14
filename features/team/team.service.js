@@ -26,15 +26,15 @@ async function create(teamParam) {
 async function update(teamParam) {
     // console.log({teamParam});
 
-    const team = await Team.findOne({ owner: teamParam.ownerEmail });
+    const team = await Team.findOne({ ownerEmail: teamParam.ownerEmail });
 
     // validate
     if (!team) throw 'Team not found';
     
     // copy userParam properties to user
-    Object.assign(user, teamParam);
+    Object.assign(team, teamParam);
 
-    await user.save();
+    await team.save();
 }
  
 
