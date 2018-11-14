@@ -4,7 +4,8 @@ const Team = db.Team;
 module.exports = { 
     getAll,
     create,
-    update 
+    update,
+    findTeam 
 };
  
 async function getAll() {
@@ -36,5 +37,9 @@ async function update(teamParam) {
 
     await team.save();
 }
- 
+
+async function findTeam(ownerEmail) { 
+    return await Team.findOne({ ownerEmail: ownerEmail });
+}
+
 

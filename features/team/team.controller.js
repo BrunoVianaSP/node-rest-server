@@ -5,6 +5,7 @@ const teamService = require('./team.service');
 // routes
 router.post('/register', register);
 router.put('/update', update);
+router.get('/info', findTeam);
 router.get('/', getAll);
   
 function register(req, res, next) {
@@ -22,6 +23,12 @@ function getAll(req, res, next) {
 function update(req, res, next) {
     teamService.update(req.body)
         .then(() => res.json({message: "Team updated!"}))
+        .catch(err => next(err));
+}
+
+function findTeam(req, res, next) {
+    teamService.findTeam(req.query.ownerEmail)
+        .then(team => res.json(team))
         .catch(err => next(err));
 }
  
