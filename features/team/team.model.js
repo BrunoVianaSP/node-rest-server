@@ -4,13 +4,16 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     name: { type: String, required: true},
     birth: { type: Date, required: true },
-    mode: { type: String, required: true },
+    modality: { type: String, required: true },
+    category: { type: String, required: true },
+    availability: { type: String, required: true },
+    fieldAddress: { type: String, required: true },
     address: { type: String, required: true },
+    country: { type: String, required: true },
+    state: { type: String, required: true },
+    city: { type: String, required: true },
+    side: { type: String, required: true },
     ownerEmail: { type: String, required: true },
-    country: { type: String, required: false },
-    state: { type: String, required: false },
-    city: { type: String, required: false },
-    side: { type: String, required: false },
     createdDate: { type: Date, default: Date.now }
 });
 
