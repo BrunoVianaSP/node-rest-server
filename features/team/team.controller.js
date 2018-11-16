@@ -10,25 +10,25 @@ router.get('/', getAll);
   
 function register(req, res, next) {
     teamService.create(req.body)
-        .then(() => res.json({}))
+        .then(team => team ? res.status(201).json(team) : res.status(400).json({}))
         .catch(err => next(err));
 }
 
 function getAll(req, res, next) {
     teamService.getAll()
-        .then(users => res.json(users))
+        .then(teams => res.json(teams))
         .catch(err => next(err));
 }
 
 function update(req, res, next) {
     teamService.update(req.body)
-        .then(() => res.json({message: "Team updated!"}))
+        .then(team => team ? res.status(200).json(team) : res.status(400).json({}))
         .catch(err => next(err));
 }
 
 function findTeam(req, res, next) {
     teamService.findTeam(req.query.ownerEmail)
-        .then(team => res.json(team))
+        .then(team => team ? res.status(200).json(team) : res.status(400).json({}))
         .catch(err => next(err));
 }
  

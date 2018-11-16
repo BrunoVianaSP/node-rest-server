@@ -13,15 +13,22 @@ async function getAll() {
 }
  
 async function create(teamParam) {
+
+    console.log({teamParam});
+
     // validate
     if (await Team.findOne({ owner: teamParam.ownerEmail })) {
-        throw 'Team "' + teamParam.email + '" already exists';
+        throw 'Team "' + teamParam.ownerEmail + '" already exists';
     }
 
     const team = new Team(teamParam);
  
+    console.log({team});
+
     // save user
     await team.save();
+
+    return team;
 }
  
 async function update(teamParam) {
@@ -36,6 +43,8 @@ async function update(teamParam) {
     Object.assign(team, teamParam);
 
     await team.save();
+
+    return team;
 }
 
 async function findTeam(ownerEmail) { 
