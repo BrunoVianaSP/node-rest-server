@@ -26,7 +26,7 @@ async function create(matchParam) {
     console.log({match});
 
     // save user
-    await match.save();
+    await match.save(); 
 
     return match;
 }
