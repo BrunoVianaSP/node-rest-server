@@ -17,7 +17,7 @@ async function create(matchParam) {
     console.log({matchParam});
 
     // validate
-    if (await Match.findOne({ "homeTeam.ownerEmail" : homeTeam.ownerEmail, "awayTeam.ownerEmail" : awayTeam.ownerEmail })) {
+    if (await Match.findOne({ "homeTeam.ownerEmail" : matchParam.homeTeam.ownerEmail, "awayTeam.ownerEmail" : matchParam.awayTeam.ownerEmail })) {
         throw 'Match "' + homeTeam.ownerEmail + '" already exists';
     }
 
@@ -34,7 +34,7 @@ async function create(matchParam) {
 async function update(matchParam) {
     // console.log({matchParam});
 
-    const team = await Match.findOne({ ownerEmail: matchParam.ownerEmail });
+    const team = await Match.findOne({ ownerEmail: matchParam.homeTeam.ownerEmail });
 
     // validate
     if (!team) throw 'Match not found';
