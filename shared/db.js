@@ -9,5 +9,6 @@ mongoose.Promise = global.Promise;
 
 module.exports = {
     User: require('../features/user/user.model'),
-    Team: require('../features/team/team.model')
+    Team: require('../features/team/team.model'),
+    Match: require('../features/match/match.model')
 };
