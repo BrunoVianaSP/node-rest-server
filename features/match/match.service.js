@@ -34,20 +34,20 @@ async function create(matchParam) {
 async function update(matchParam) {
     // console.log({matchParam});
 
-    const team = await Match.findOne({ ownerEmail: matchParam.homeTeam.ownerEmail });
+    const match = await Match.findOne({ "homeTeam.ownerEmail": matchParam.homeTeam.ownerEmail });
 
     // validate
-    if (!team) throw 'Match not found';
+    if (!match) throw 'Match not found';
     
     // copy userParam properties to user
-    Object.assign(team, matchParam);
+    Object.assign(match, matchParam);
 
-    await team.save();
+    await match.save();
 
-    return team;
+    return match;
 }
 
-async function findTeam(ownerEmail) { 
+async function findMatch(ownerEmail) { 
     return await Match.findOne({ ownerEmail: ownerEmail });
 }
 
