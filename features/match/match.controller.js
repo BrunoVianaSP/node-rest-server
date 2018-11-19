@@ -5,7 +5,8 @@ const matchService = require('./match.service');
 // routes
 router.post('/register', register);
 router.put('/update', update);
-router.get('/:ownerEmail', getAll);
+router.get('/', getAll);
+router.get('/season', findMatches);
   
 function register(req, res, next) {
     matchService.create(req.body)
@@ -15,7 +16,13 @@ function register(req, res, next) {
 
 function getAll(req, res, next) {
     matchService.getAll()
-        .then(teams => res.json(teams))
+        .then(matches => res.json(matches))
+        .catch(err => next(err));
+}
+
+function findMatches(req, res, next) {
+    matchService.findMatches(req.query.ownerEmail)
+        .then(matches => res.json(matches))
         .catch(err => next(err));
 }
 

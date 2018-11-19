@@ -5,7 +5,7 @@ module.exports = {
     getAll,
     create,
     update,
-    findTeam 
+    findMatches 
 };
  
 async function getAll() {
@@ -47,8 +47,8 @@ async function update(matchParam) {
     return match;
 }
 
-async function findMatch(ownerEmail) { 
-    return await Match.findOne({ ownerEmail: ownerEmail });
+async function findMatches(ownerEmail) { 
+    return await Match.find({  $or : [{"homeTeam.ownerEmail": ownerEmail}, {"awayTeam.ownerEmail": ownerEmail}] });
 }
 
 
