@@ -5,7 +5,8 @@ module.exports = {
     getAll,
     create,
     update,
-    findTeam 
+    findTeam,
+    findAdversaryList 
 };
  
 async function getAll() {
@@ -51,4 +52,6 @@ async function findTeam(ownerEmail) {
     return await Team.findOne({ ownerEmail: ownerEmail });
 }
 
-
+async function findAdversaryList(ownerEmail) {
+    return await Team.find({ ownerEmail: {$ne : ownerEmail} });
+}
