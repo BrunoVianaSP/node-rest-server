@@ -4,6 +4,7 @@ const matchService = require('./match.service');
  
 // routes
 router.post('/register', register);
+router.post('/register/batch', registerBatch);
 router.put('/update', update);
 router.get('/', getAll);
 router.get('/season', findMatches);
@@ -11,6 +12,12 @@ router.get('/season', findMatches);
 function register(req, res, next) {
     matchService.create(req.body)
         .then(match => match ? res.status(201).json(match) : res.status(400).json({}))
+        .catch(err => next(err));
+}
+
+function registerBatch(req, res, next) {
+    matchService.createBatch(req.body)
+        .then(matches => matches ? res.status(201).json(matches) : res.status(400).json({}))
         .catch(err => next(err));
 }
 

@@ -1,0 +1,69 @@
+{
+    "matches": [
+      {
+        "title": "Amistoso Regional",
+        "type": "Amistoso",
+        "time": "08:00",
+        "date": "2018-11-20",
+        "weekday": "Domingo",
+        "location": "Rua Engenheiro Bones, 155",
+        "homeTeam": "a@a.com",
+        "awayTeam": "user1@server.com",
+        "homeTeamConfirmation": true,
+        "awayTeamConfirmation": true,
+        "status": "FINISHED"
+      },
+      {
+        "title": "Amistoso Regional",
+        "type": "Amistoso",
+        "time": "20:00",
+        "date": "2018-11-27",
+        "weekday": "Quinta-Feira",
+        "location": "Av. Carlos de Campos, 200",
+        "homeTeam": "a@a.com",
+        "awayTeam": "user2@server.com",
+        "homeTeamConfirmation": true,
+        "awayTeamConfirmation": true,
+        "status": "PENDING"
+      },
+      {
+        "title": "Amistoso Regional",
+        "type": "Amistoso",
+        "time": "08:00",
+        "date": "2018-11-19",
+        "weekday": "Sexta-Feira",
+        "location": "Rua Silva Carlos, 155",
+        "homeTeam": "a@a.com",
+        "awayTeam": "user3@server.com",
+        "homeTeamConfirmation": true,
+        "awayTeamConfirmation": false,
+        "status": "PENDING"
+      },
+      {
+        "title": "Amistoso Regional",
+        "type": "Amistoso",
+        "time": "08:00",
+        "date": "2018-11-22",
+        "weekday": "Quarta-Feira",
+        "location": "Rua Caetano Alvares, 345",
+        "homeTeam": "a@a.com",
+        "awayTeam": "user4@server.com",
+        "homeTeamConfirmation": true,
+        "awayTeamConfirmation": true,
+        "status": "PENDING"
+      },
+      {
+        "title": "Amistoso Regional",
+        "type": "Amistoso",
+        "time": "08:00",
+        "date": "2018-11-29",
+        "weekday": "Domingo",
+        "location": "Rua Caetano Engenheiro Alvares, 55",
+        "homeTeam": "a@a.com",
+        "awayTeam": "user5@server.com",
+        "homeTeamConfirmation": true,
+        "awayTeamConfirmation": false,
+        "status": "PENDING"
+      }
+    ]
+  }

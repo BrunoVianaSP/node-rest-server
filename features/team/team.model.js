@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
  
 const schema = new Schema({
+    shield: { type: Buffer, required: false},
     name: { type: String, required: true},
     birth: { type: Date, required: true },
     modality: { type: String, required: true },

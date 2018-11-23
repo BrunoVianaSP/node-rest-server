@@ -5,7 +5,8 @@ module.exports = {
     getAll,
     create,
     update,
-    findMatches 
+    findMatches,
+    createBatch 
 };
  
 async function getAll() {
@@ -31,6 +32,20 @@ async function create(matchParam) {
     return match;
 }
  
+
+async function createBatch(matches) {
+    console.log({matches});
+    let result = [];
+    
+    matches.forEach(element => {
+        result.push(create(element));
+    });
+
+    return result;
+}
+
+
+
 async function update(matchParam) {
     // console.log({matchParam});
 
