@@ -4,6 +4,7 @@ const teamService = require('./team.service');
  
 // routes
 router.post('/register', register);
+router.post('/register/batch', registerBatch);
 router.put('/update', update);
 router.get('/info', findTeam);
 router.get('/adversary', findAdversaryList);
@@ -12,6 +13,12 @@ router.get('/', getAll);
 function register(req, res, next) {
     teamService.create(req.body)
         .then(team => team ? res.status(201).json(team) : res.status(400).json({}))
+        .catch(err => next(err));
+}
+
+function registerBatch(req, res, next) {
+    teamService.createBatch(req.body)
+        .then(teams => teams ? res.status(201).json(teams) : res.status(400).json({}))
         .catch(err => next(err));
 }
 

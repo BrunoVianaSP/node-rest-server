@@ -6,7 +6,8 @@ module.exports = {
     create,
     update,
     findTeam,
-    findAdversaryList 
+    findAdversaryList,
+    createBatch 
 };
  
 async function getAll() {
@@ -15,7 +16,7 @@ async function getAll() {
  
 async function create(teamParam) {
 
-    console.log({teamParam});
+    // console.log({teamParam});
 
     // validate
     if (await Team.findOne({ owner: teamParam.ownerEmail })) {
@@ -24,13 +25,25 @@ async function create(teamParam) {
 
     const team = new Team(teamParam);
  
-    console.log({team});
+    // console.log({team});
 
     // save user
     await team.save();
 
     return team;
 }
+
+async function createBatch(teams) {
+    // console.log({teams});
+    let result = [];
+    
+    teams.forEach(element => {
+        result.push(create(element));
+    });
+
+    return result;
+}
+
  
 async function update(teamParam) {
     // console.log({teamParam});
