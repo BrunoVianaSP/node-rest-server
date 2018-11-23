@@ -1,10 +1,11 @@
-{"firstName":"Admin", "lastName":"User", "email": "a@a.com", "username": "admin", "password": "a", "agreement" : true}
-{"firstName":"Test 1", "lastName":"User", "email": "user1@server.com", "username": "user1", "password": "a", "agreement" : true}
-{"firstName":"Test 2", "lastName":"User", "email": "user2@server.com", "username": "user2", "password": "a", "agreement" : true}
-{"firstName":"Test 3", "lastName":"User", "email": "user3@server.com", "username": "user3", "password": "a", "agreement" : true}
-{"firstName":"Test 4", "lastName":"User", "email": "user4@server.com", "username": "user4", "password": "a", "agreement" : true}
-{"firstName":"Test 5", "lastName":"User", "email": "user5@server.com", "username": "user5", "password": "a", "agreement" : true}
-{"firstName":"Test 6", "lastName":"User", "email": "user6@server.com", "username": "user6", "password": "a", "agreement" : true}
-{"firstName":"Test 7", "lastName":"User", "email": "user7@server.com", "username": "user7", "password": "a", "agreement" : true}
-{"firstName":"Test 8", "lastName":"User", "email": "user8@server.com", "username": "user8", "password": "a", "agreement" : true}
-{"firstName":"Test 9", "lastName":"User", "email": "user9@server.com", "username": "user9", "password": "a", "agreement" : true}
+[{"firstName":"Admin", "lastName":"User", "email": "b@b.com", "username": "admin", "password": "a", "agreement" : true},
+    {"firstName":"Test 1", "lastName":"User", "email": "user1@server.com", "username": "user1", "password": "a", "agreement" : true},
+    {"firstName":"Test 2", "lastName":"User", "email": "user2@server.com", "username": "user2", "password": "a", "agreement" : true},
+    {"firstName":"Test 3", "lastName":"User", "email": "user3@server.com", "username": "user3", "password": "a", "agreement" : true},
+    {"firstName":"Test 4", "lastName":"User", "email": "user4@server.com", "username": "user4", "password": "a", "agreement" : true},
+    {"firstName":"Test 5", "lastName":"User", "email": "user5@server.com", "username": "user5", "password": "a", "agreement" : true},
+    {"firstName":"Test 6", "lastName":"User", "email": "user6@server.com", "username": "user6", "password": "a", "agreement" : true},
+    {"firstName":"Test 7", "lastName":"User", "email": "user7@server.com", "username": "user7", "password": "a", "agreement" : true},
+    {"firstName":"Test 8", "lastName":"User", "email": "user8@server.com", "username": "user8", "password": "a", "agreement" : true},
+    {"firstName":"Test 9", "lastName":"User", "email": "user9@server.com", "username": "user9", "password": "a", "agreement" : true}]
+    

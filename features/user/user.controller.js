@@ -5,6 +5,7 @@ const userService = require('./user.service');
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
+router.post('/register/batch', registerBatch);
 router.get('/forgot', forgot);
 router.get('/', getAll);
 router.put('/update', update);
@@ -19,6 +20,12 @@ function authenticate(req, res, next) {
 function register(req, res, next) {
     userService.create(req.body)
         .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function registerBatch(req, res, next) {
+    userService.createBatch(req.body)
+        .then(users => users ? res.status(201).json(users) : res.status(400).json({}))
         .catch(err => next(err));
 }
 

@@ -15,7 +15,7 @@ async function getAll() {
  
 async function create(matchParam) {
 
-    console.log({matchParam});
+    // console.log({matchParam});
 
     // validate
     if (await Match.findOne({ "homeTeam.ownerEmail" : matchParam.homeTeam.ownerEmail, "awayTeam.ownerEmail" : matchParam.awayTeam.ownerEmail })) {
@@ -24,7 +24,7 @@ async function create(matchParam) {
 
     const match = new Match(matchParam);
  
-    console.log({match});
+    // console.log({match});
 
     // save user
     await match.save(); 
@@ -43,8 +43,6 @@ async function createBatch(matches) {
 
     return result;
 }
-
-
 
 async function update(matchParam) {
     // console.log({matchParam});

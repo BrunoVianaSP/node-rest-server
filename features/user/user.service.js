@@ -12,7 +12,8 @@ module.exports = {
     update,
     getById,
     recoverPassword,
-    delete: _delete
+    delete: _delete,
+    createBatch
 };
  
 async function authenticate({ email, password }) {
@@ -50,6 +51,17 @@ async function create(userParam) {
 
     // save user
     await user.save();
+}
+
+async function createBatch(users) {
+    // console.log({teams});
+    let result = [];
+    
+    users.forEach(element => {
+        result.push(create(element));
+    });
+
+    return result;
 }
 
 function isMatchOfPassword(user) {
