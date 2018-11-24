@@ -18,13 +18,13 @@ async function create(matchParam) {
     // console.log({matchParam});
 
     // validate
-    if (await Match.findOne({ "homeTeam.ownerEmail" : matchParam.homeTeam.ownerEmail, "awayTeam.ownerEmail" : matchParam.awayTeam.ownerEmail })) {
-        throw 'Match "' + homeTeam.ownerEmail + '" already exists';
+    if (await Match.findOne( { $and : [{ "homeTeam.ownerEmail" : matchParam.homeTeam.ownerEmail, "awayTeam.ownerEmail" : matchParam.awayTeam.ownerEmail }] } )) {
+        throw 'Match for ' + matchParam.homeTeam.ownerEmail +  ' and ' +  matchParam.awayTeam.ownerEmail + '" already exists';
     }
 
     const match = new Match(matchParam);
  
-    // console.log({match});
+    console.log({match});
 
     // save user
     await match.save(); 
