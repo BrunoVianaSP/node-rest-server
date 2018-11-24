@@ -7,7 +7,8 @@ module.exports = {
     update,
     findTeam,
     findAdversaryList,
-    createBatch 
+    createBatch,
+    getChallenge 
 };
  
 async function getAll() {
@@ -68,3 +69,8 @@ async function findTeam(ownerEmail) {
 async function findAdversaryList(ownerEmail) {
     return await Team.find({ ownerEmail: {$ne : ownerEmail} });
 }
+
+async function getChallenge(ownerEmailUser, ownerEmailAdversary) { 
+    return await Team.find({  $or : [{"ownerEmail": ownerEmailUser}, {"ownerEmail": ownerEmailAdversary}] });
+}
+
