@@ -14,6 +14,7 @@ const schema = new Schema({
     state: { type: String, required: true },
     city: { type: String, required: true },
     side: { type: String, required: true },
+    neighborhood: { type: String, required: true },
     ownerEmail: { type: String, required: true },
     createdDate: { type: Date, default: Date.now }
 });

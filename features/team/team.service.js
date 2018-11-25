@@ -1,5 +1,6 @@
+const matchService = require('../match/match.service'); 
 const db = require('../../shared/db');
-const Team = db.Team; 
+const Team = db.Team;
 
 module.exports = { 
     getAll,
@@ -67,10 +68,26 @@ async function findTeam(ownerEmail) {
 }
 
 async function findAdversaryList(ownerEmail) {
-    return await Team.find({ ownerEmail: {$ne : ownerEmail} });
+    let teams =  await Team.find({ ownerEmail: {$ne : ownerEmail} });
+    
+    // console.log({teams});
+
+    let result = [];
+
+    teams.forEach(team => {
+        if(!matchService.hasMatch(ownerEmail, team.ownerEmail)) { //TODO: Implements the right rule
+            // console.log("Not exists!");
+            result.push(team);
+        }    
+    });
+    
+    return result;
 }
 
 async function getChallenge(ownerEmailUser, ownerEmailAdversary) { 
-    return await Team.find({  $or : [{"ownerEmail": ownerEmailUser}, {"ownerEmail": ownerEmailAdversary}] });
+    console.log({ownerEmailUser});
+    console.log({ownerEmailAdversary});
+    let teams = await Team.find({  $or : [{"ownerEmail": ownerEmailUser}, {"ownerEmail": ownerEmailAdversary}] }).limit(2);
+    return teams;
 }
 

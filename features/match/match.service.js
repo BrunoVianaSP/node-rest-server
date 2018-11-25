@@ -1,4 +1,5 @@
 const db = require('../../shared/db');
+const dateUtils = require('../../shared/dateUtils');
 const Match = db.Match; 
 
 module.exports = { 
@@ -6,7 +7,8 @@ module.exports = {
     create,
     update,
     findMatches,
-    createBatch 
+    createBatch,
+    hasMatch 
 };
  
 async function getAll() {
@@ -23,6 +25,8 @@ async function create(matchParam) {
     }
 
     const match = new Match(matchParam);
+
+    match.weekday = dateUtils.weekday(match.date);
  
     console.log({match});
 
@@ -63,5 +67,21 @@ async function update(matchParam) {
 async function findMatches(ownerEmail) { 
     return await Match.find({  $or : [{"homeTeam.ownerEmail": ownerEmail}, {"awayTeam.ownerEmail": ownerEmail}] });
 }
+ 
+function hasMatch(ownerEmail, adversaryEmail) {
 
+    // if (Match.findOne( { $and : [{ "homeTeam.ownerEmail" : ownerEmail, "awayTeam.ownerEmail" : adversaryEmail }] } )) {
+    //     return true;
+    // } 
 
+    // if (Match.findOne( { $and : [{ "homeTeam.ownerEmail" : adversaryEmail, "awayTeam.ownerEmail" : ownerEmail }] } )) {
+    //     return true;
+    // }
+
+    return false;
+    // return false;
+    // return Match.findOne( { $or: [ { "homeTeam.ownerEmail" : ownerEmail, "awayTeam.ownerEmail" : adversaryEmail },
+    //                                { "homeTeam.ownerEmail" : adversaryEmail, "awayTeam.ownerEmail" : ownerEmail } ] }, {"_id" : 1} ) != null;
+    // return Match.findOne( { $or: [ { $and : [{ "homeTeam.ownerEmail" : ownerEmail, "awayTeam.ownerEmail" : adversaryEmail }]},
+    //                                { $and : [{ "homeTeam.ownerEmail" : adversaryEmail, "awayTeam.ownerEmail" : ownerEmail }]} ] }, {"_id" : 1} ) != null;
+}
