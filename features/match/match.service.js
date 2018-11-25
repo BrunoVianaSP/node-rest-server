@@ -1,5 +1,6 @@
 const db = require('../../shared/db');
 const dateUtils = require('../../shared/dateUtils');
+var ObjectID = require('mongodb').ObjectID;
 const Match = db.Match; 
 
 module.exports = { 
@@ -8,7 +9,8 @@ module.exports = {
     update,
     findMatches,
     createBatch,
-    hasMatch 
+    hasMatch,
+    deleteMatch 
 };
  
 async function getAll() {
@@ -84,4 +86,9 @@ function hasMatch(ownerEmail, adversaryEmail) {
     //                                { "homeTeam.ownerEmail" : adversaryEmail, "awayTeam.ownerEmail" : ownerEmail } ] }, {"_id" : 1} ) != null;
     // return Match.findOne( { $or: [ { $and : [{ "homeTeam.ownerEmail" : ownerEmail, "awayTeam.ownerEmail" : adversaryEmail }]},
     //                                { $and : [{ "homeTeam.ownerEmail" : adversaryEmail, "awayTeam.ownerEmail" : ownerEmail }]} ] }, {"_id" : 1} ) != null;
+}
+
+
+async function deleteMatch(match) {
+    await Match.findByIdAndRemove(match._id);
 }

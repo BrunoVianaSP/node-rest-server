@@ -5,6 +5,7 @@ const matchService = require('./match.service');
 // routes
 router.post('/register', register);
 router.post('/register/batch', registerBatch);
+router.put('/delete', _delete);
 router.put('/update', update);
 router.get('/', getAll);
 router.get('/season', findMatches);
@@ -38,5 +39,11 @@ function update(req, res, next) {
         .then(match => match ? res.status(200).json(match) : res.status(400).json({}))
         .catch(err => next(err));
 }
- 
+
+function _delete(req, res, next) {
+    matchService.deleteMatch(req.body)
+        .then( () => res.status(200).json({}))
+        .catch(err => next(err));
+}
+
 module.exports = router;
