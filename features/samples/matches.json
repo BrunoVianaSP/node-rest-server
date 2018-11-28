@@ -1,17 +1,38 @@
 [
-    {
-      "title": "Amistoso Regional",
-      "type": "Amistoso",
-      "time": "08:00",
-      "date": "2018-11-20",
-      "weekday": "Domingo",
-      "location": "Rua Engenheiro Bones, 155",
-      "homeTeam": {"name": "Chronos F.S.", "ownerEmail" : "a@a.com"},
-      "awayTeam": {"name": "Real 12 F.S", "ownerEmail" : "user1@server.com"},
-      "homeTeamConfirmation": true,
-      "awayTeamConfirmation": true,
-      "status": "FINISHED"
+  {
+    "title": "Amistoso Regional",
+    "type": "Amistoso",
+    "time": "08:00",
+    "date": "2018-11-20",
+    "weekday": "Domingo",
+    "location": "Rua Engenheiro Bones, 155",
+    "homeTeam": {"name": "Chronos F.S.", "ownerEmail" : "a@a.com"},
+    "awayTeam": {"name": "Real 12 F.S", "ownerEmail" : "user2@server.com"},
+    
+    "timeline": [{"action" : "Gooool!", 
+           "actionTime" : "12'", 
+           "actorName" : "G. Bale", 
+           "actionDescription" : "A beautiful score!", 
+           "homeTeamScore" : "2", 
+           "homeTeamName" : "R13 F.S.", 
+           "awayTeamScore" : "1",
+           "awayTeamName" : "Real 12 F.S."
+    }],
+    
+    "lineup": {
+        "home": {"manager" : "Tiao Carlos", "squad" : { "players" : [{"name": "Goleiro Time 1", "number": "1"}], "formation" : "4-4-2" } },
+        "away": {"manager" : "Zezi Neto S", "squad" : { "players" : [{"name": "Goleiro Time 2", "number": "1"}], "formation" : "4-3-3" } }
     },
+    
+    "stats": {
+      "home": {"shots" : 4, "fouls" : 12, "corners" : 2, "offsides" : 1, "yellowCards" : 1, "redCards" : 1},
+      "away": {"shots" : 8, "fouls" : 18, "corners" : 4, "offsides" : 7, "yellowCards" : 4, "redCards" : 0}	
+    },
+    
+    "homeTeamConfirmation": true,
+    "awayTeamConfirmation": true,
+    "status": "PENDING"
+  },
     {
       "title": "Amistoso Regional",
       "type": "Amistoso",
