@@ -53,7 +53,7 @@ async function createBatch(matches) {
 async function update(matchParam) {
     // console.log({matchParam});
 
-    const match = await Match.findOne({ "homeTeam.ownerEmail": matchParam.homeTeam.ownerEmail });
+    const match = await Match.findById(matchParam._id);
 
     // validate
     if (!match) throw 'Match not found';
