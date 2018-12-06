@@ -1,0 +1,803 @@
+{
+	"info": {
+		"_postman_id": "3d6b8030-fc5b-450e-9463-b079310fc7b4",
+		"name": "node-server LOCAL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USER authenticate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"a@a.com\", \"password\": \"a\"}"
+				},
+				"url": {
+					"raw": "http://localhost:1313/user/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"user",
+						"authenticate"
+					]
+				},
+				"description": "create a new user in database"
+			},
+			"response": []
+		},
+		{
+			"name": "USER forgot password",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"admin@server.com\", \"password\": \"admin\"}"
+				},
+				"url": {
+					"raw": "http://localhost:1313/user/forgot?email=test@test.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"user",
+						"forgot"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@test.com"
+						}
+					]
+				},
+				"description": "create a new user in database"
+			},
+			"response": []
+		},
+		{
+			"name": "USER register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\":\"Admin\", \"lastName\":\"User\", \"email\": \"a@a.com\", \"username\": \"admin\", \"password\": \"a\", \"agreement\" : true}"
+				},
+				"url": {
+					"raw": "http://localhost:1313/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"user",
+						"register"
+					]
+				},
+				"description": "create a new user in database"
+			},
+			"response": []
+		},
+		{
+			"name": "USER register batch",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwMDU5MjUsImV4cCI6MTU0MzAyMzkyNX0.2Zc1WUfbQM20GYpI9hMdK58kMXUeWFJYqimkcllc2JM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"firstName\":\"Admin\", \"lastName\":\"User\", \"email\": \"b@b.com\", \"username\": \"admin\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 1\", \"lastName\":\"User\", \"email\": \"user1@server.com\", \"username\": \"user1\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 2\", \"lastName\":\"User\", \"email\": \"user2@server.com\", \"username\": \"user2\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 3\", \"lastName\":\"User\", \"email\": \"user3@server.com\", \"username\": \"user3\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 4\", \"lastName\":\"User\", \"email\": \"user4@server.com\", \"username\": \"user4\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 5\", \"lastName\":\"User\", \"email\": \"user5@server.com\", \"username\": \"user5\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 6\", \"lastName\":\"User\", \"email\": \"user6@server.com\", \"username\": \"user6\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 7\", \"lastName\":\"User\", \"email\": \"user7@server.com\", \"username\": \"user7\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 8\", \"lastName\":\"User\", \"email\": \"user8@server.com\", \"username\": \"user8\", \"password\": \"a\", \"agreement\" : true},\r\n{\"firstName\":\"Test 9\", \"lastName\":\"User\", \"email\": \"user9@server.com\", \"username\": \"user9\", \"password\": \"a\", \"agreement\" : true}]\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:1313/user/register/batch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"user",
+						"register",
+						"batch"
+					]
+				},
+				"description": "create a new user in database"
+			},
+			"response": []
+		},
+		{
+			"name": "USER get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwMDkzMDksImV4cCI6MTU0MzAyNzMwOX0.TVub0ZVroTz-FimhROxonSRfzIj4arwSrR6lm2sgAv4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:1313/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"user"
+					]
+				},
+				"description": "get all users from database"
+			},
+			"response": []
+		},
+		{
+			"name": "USER update password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmU5OTY0MDdjY2YzODQ3OTQ1YTkxMGUiLCJpYXQiOjE1NDIwNTY0NjQsImV4cCI6MTU0MjA3NDQ2NH0.OBzl55jPZWlabSV1U65t6Lh8VUz-q8ur6ZRQMitTPvA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"admin@server.com\", \"password\": \"b\", \"confirmPassword\": \"b\"}"
+				},
+				"url": {
+					"raw": "http://localhost:1313/user/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"user",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEAM get all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwMDkzMDksImV4cCI6MTU0MzAyNzMwOX0.TVub0ZVroTz-FimhROxonSRfzIj4arwSrR6lm2sgAv4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1313/team",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"team"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEAM register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmVlZmUwY2U4YTBiMzUwZDBjZWZkYzQiLCJpYXQiOjE1NDMwMDAyMDAsImV4cCI6MTU0MzAxODIwMH0.sjBA5JJ63A2ZU3n24RNUeHiauZzdtmsy6eJf6e0C_cU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Chronos F.S.\", \"birth\": \"2014-08-13\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Domingo - 08:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Rudger Norbit, 13\", \"neighborhood\": \"Jd. Cacique\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"NORTE\", \"ownerEmail\": \"a0@a.com\"}"
+				},
+				"url": {
+					"raw": "http://localhost:1313/team/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"team",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEAM register batch",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwOTA4MzAsImV4cCI6MTU0MzEwODgzMH0.duUVGXy5fCHKPUaNSl1fAUUxk2toguYaveRlkRoofBg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"name\": \"Chronos F.S.\", \"birth\": \"2014-08-13\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Domingo - 08:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Rudger Norbit, 13\", \"neighborhood\": \"Jd. Cacique\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"NORTE\", \"ownerEmail\": \"a0@a.com\"},\r\n{\"name\": \"R13 F.S.\", \"birth\": \"2014-04-13\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Domingo - 08:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Santa Rita Novaes, 38\", \"neighborhood\": \"Jd. Pari\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"NORTE\", \"ownerEmail\": \"user0@server.com\"},\r\n{\"name\": \"Real 12 F.S.\", \"birth\": \"2008-05-15\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Sábado - 10:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Santa Clara Neto, 389\", \"neighborhood\": \"Jd. Brasil\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"SUL\", \"ownerEmail\": \"user1@server.com\"},\r\n{\"name\": \"Newaska F.C.\", \"birth\": \"2004-07-23\", \"modality\": \"Campo\", \"category\": \"Adulto - Masculino\", \"availability\": \"Sexta-Feira - 21:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Av. Paulista, 238\", \"neighborhood\": \"Jd. Paulista\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"NORTE\", \"ownerEmail\": \"user2@server.com\"},\r\n{\"name\": \"Maloka F.S.\", \"birth\": \"2000-06-13\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Quinta-Feira - 21:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Carburosa Reis, 138\", \"neighborhood\": \"Jd. Consolata\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"LESTE\", \"ownerEmail\": \"user3@server.com\"},\r\n{\"name\": \"Madureira F.C.\", \"birth\": \"2009-09-29\", \"modality\": \"Campo\", \"category\": \"Adulto - Masculino\", \"availability\": \"Sábado - 10:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Macadamia Celestina, 455\", \"neighborhood\": \"Vila Romana\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"OESTE\", \"ownerEmail\": \"user4@server.com\"},\r\n{\"name\": \"America F.C.\", \"birth\": \"1999-01-25\", \"modality\": \"Campo\", \"category\": \"Adulto - Masculino\", \"availability\": \"Domingo - 08:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Teodato Cabrunin, 2000\", \"neighborhood\": \"Jd. Almanaque\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"CENTRO\", \"ownerEmail\": \"user5@server.com\"},\r\n{\"name\": \"Inajar F.S.\", \"birth\": \"2011-03-02\", \"modality\": \"Society\", \"category\": \"Adulto - Masculino\", \"availability\": \"Quarta-Feira - 10:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Av. Ordeolo Castro, 60\", \"neighborhood\": \"Jd. Jantardia\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"SUL\", \"ownerEmail\": \"user6@server.com\"},\r\n{\"name\": \"Magnolia F.S.\", \"birth\": \"2010-07-06\", \"modality\": \"Society\", \"category\": \"Adulto - Masculino\", \"availability\": \"Domingo - 10:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Carisma Chantagem, 22\", \"neighborhood\": \"Santa Cecilia\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"SUL\", \"ownerEmail\": \"user7@server.com\"},\r\n{\"name\": \"Red Eyes F.S.\", \"birth\": \"2001-11-09\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Sábado - 08:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Beija Flor, 59\", \"neighborhood\": \"Jd. Clausofidio\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"NORTE\", \"ownerEmail\": \"user8@server.com\"},\r\n{\"name\": \"Cantareira F.S.\", \"birth\": \"2005-05-30\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Quinta-Feira - 20:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Av. Lima Santos, 13\", \"neighborhood\": \"Jd. General Elias\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"LESTE\", \"ownerEmail\": \"user9@server.com\"}]\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:1313/team/register/batch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"team",
+						"register",
+						"batch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEAM find team",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmU5OTY0MDdjY2YzODQ3OTQ1YTkxMGUiLCJpYXQiOjE1NDIyMjc2MjYsImV4cCI6MTU0MjI0NTYyNn0.ekrSUnSEnLwk3iLYWJvPMhntU6zmJ-W3VngdUitpk3E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1313/team/info?ownerEmail=test@test.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"team",
+						"info"
+					],
+					"query": [
+						{
+							"key": "ownerEmail",
+							"value": "test@test.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEAM adversary list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmVlZmUwY2U4YTBiMzUwZDBjZWZkYzQiLCJpYXQiOjE1NDI5OTM3MzIsImV4cCI6MTU0MzAxMTczMn0.DO14i1OfDrzZEMJRokcmUSD0k5FzvfdesB3ndEmg1RM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1313/team/adversary?ownerEmail=test@test.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"team",
+						"adversary"
+					],
+					"query": [
+						{
+							"key": "ownerEmail",
+							"value": "test@test.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEAM update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmVlYzJlNTgyY2E4ODgyZTRlZDg1ZTYiLCJpYXQiOjE1NDIzNzQxMzYsImV4cCI6MTU0MjM5MjEzNn0.2v4krLoZJ9WeVyjFrhnoZ4nCBYh5HrvNQCc4axbPCgg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"R13 F.S.\", \"birth\": \"2014-04-13\", \"modality\": \"Futsal\", \"category\": \"Adulto - Masculino\", \"availability\": \"Domingo - 10:00\", \"fieldAddress\": \"Visitante\", \"address\": \"Rua Santa Rita do Itueto\", \"ownerEmail\": \"a@a.com\", \"country\": \"Brasil\", \"state\": \"SP\", \"city\": \"São Paulo\", \"side\": \"NORTE\"}"
+				},
+				"url": {
+					"raw": "http://localhost:1313/team/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"team",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDQxMjgxNTUsImV4cCI6MTU0NDE0NjE1NX0.nlqKdoW25NZTb9ocauKM8DSFF4xvpt-A_XV339pnMlY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Amistoso Regional\",\n  \"type\": \"Amistoso\",\n  \"time\": \"08:00\",\n  \"date\": \"2018-11-20\",\n  \"weekday\": \"Domingo\",\n  \"location\": \"Rua Engenheiro Bones, 155\",\n  \"homeTeam\": {\n    \"name\": \"R13 F.S.\",\n    \"ownerEmail\": \"a@a.com\"\n  },\n  \"awayTeam\": {\n    \"name\": \"Real 12 F.S\",\n    \"ownerEmail\": \"user2@server.com\"\n  },\n  \"timeline\": [\n    {\n      \"action\": \"Gooool!\",\n      \"actionTime\": \"12'\",\n      \"actorName\": \"G. Bale\",\n      \"actionDescription\": \"A beautiful score!\",\n      \"teamName\": \"R13 F.S.\",\n      \"homeTeamCurentScore\": \"2\",\n      \"homeTeamName\": \"R13 F.S.\",\n      \"awayTeamCurentScore\": \"1\",\n      \"awayTeamName\": \"Real 12 F.S.\"\n    }\n  ],\n  \"lineup\": {\n    \"home\": {\n      \"manager\": \"Tiao Carlos\",\n      \"squad\": {\n        \"players\": [\n          {\n            \"name\": \"Largura\",\n            \"number\": \"1\",\n            \"position\": \"GK\",\n            \"teamName\": \"R13 F.S.\"\n          },\n          {\n            \"name\": \"Bruno\",\n            \"number\": \"13\",\n            \"position\": \"FIXO\",\n            \"teamName\": \"R13 F.S.\"\n          },\n          {\n            \"name\": \"Dando\",\n            \"number\": \"10\",\n            \"position\": \"ALA\",\n            \"teamName\": \"R13 F.S.\"\n          },\n          {\n            \"name\": \"Julio\",\n            \"number\": \"9\",\n            \"position\": \"PIVO\",\n            \"teamName\": \"R13 F.S.\"\n          },\n          {\n            \"name\": \"Zeca\",\n            \"number\": \"11\",\n            \"position\": \"ALA\",\n            \"teamName\": \"R13 F.S.\"\n          }\n        ],\n        \"formation\": \"4-4-2\"\n      }\n    },\n    \"away\": {\n      \"manager\": \"Zezi Neto S\",\n      \"squad\": {\n        \"players\": [\n          {\n            \"name\": \"Begy\",\n            \"number\": \"1\",\n            \"position\": \"GK\",\n            \"teamName\": \"Real 12 F.S\"\n          },\n          {\n            \"name\": \"Chupis\",\n            \"number\": \"7\",\n            \"position\": \"FIXO\",\n            \"teamName\": \"Real 12 F.S\"\n          },\n          {\n            \"name\": \"Costela\",\n            \"number\": \"10\",\n            \"position\": \"ALA\",\n            \"teamName\": \"Real 12 F.S\"\n          },\n          {\n            \"name\": \"Baiano\",\n            \"number\": \"9\",\n            \"position\": \"PIVO\",\n            \"teamName\": \"Real 12 F.S\"\n          },\n          {\n            \"name\": \"Dan\",\n            \"number\": \"11\",\n            \"position\": \"ALA\",\n            \"teamName\": \"Real 12 F.S\"\n          }\n        ],\n        \"formation\": \"4-3-3\"\n      }\n    }\n  },\n  \"stats\": {\n    \"home\": {\n      \"score\": 3,\n      \"shots\": 4,\n      \"fouls\": 12,\n      \"corners\": 2,\n      \"offsides\": 1,\n      \"yellowCards\": 1,\n      \"redCards\": 1\n    },\n    \"away\": {\n      \"score\": 1,\n      \"shots\": 8,\n      \"fouls\": 18,\n      \"corners\": 4,\n      \"offsides\": 7,\n      \"yellowCards\": 4,\n      \"redCards\": 0\n    }\n  },\n  \"homeTeamConfirmation\": true,\n  \"awayTeamConfirmation\": true,\n  \"status\": \"PENDING\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1313/match/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"match",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMxMTEwNDQsImV4cCI6MTU0MzEyOTA0NH0.UA-DpUgU6hGwok6VycZmN0kp55PF5BKeNDDXeBE-aIg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"_id\": \"5bf9e7ff50a1f42ea8b4b0fc\",\n      \"awayTeam\": {\n        \"address\": \"Rua Beija Flor, 59\",\n        \"availability\": \"Sábado - 08:00\",\n        \"birth\": \"2001-11-09T00:00:00.000Z\",\n        \"category\": \"Adulto - Masculino\",\n        \"city\": \"São Paulo\",\n        \"country\": \"Brasil\",\n        \"fieldAddress\": \"Visitante\",\n        \"modality\": \"Futsal\",\n        \"name\": \"Red Eyes F.S.\",\n        \"neighborhood\": \"Jd. Clausofidio\",\n        \"ownerEmail\": \"user8@server.com\",\n        \"side\": \"NORTE\",\n        \"state\": \"SP\"\n      },\n      \"awayTeamConfirmation\": false,\n      \"date\": \"2018-12-12T00:00:00.000Z\",\n      \"homeTeam\": {\n        \"address\": \"Rua Rudger Norbit, 13\",\n        \"availability\": \"Domingo - 08:00\",\n        \"birth\": \"2014-08-13T00:00:00.000Z\",\n        \"category\": \"Adulto - Masculino\",\n        \"city\": \"São Paulo\",\n        \"country\": \"Brasil\",\n        \"fieldAddress\": \"Visitante\",\n        \"modality\": \"Futsal\",\n        \"name\": \"Chronos F.S.\",\n        \"neighborhood\": \"Jd. Cacique\",\n        \"ownerEmail\": \"a@a.com\",\n        \"side\": \"NORTE\",\n        \"state\": \"SP\"\n      },\n      \"homeTeamConfirmation\": false,\n      \"location\": \"Rua Tamanduatei Silva, 886\",\n      \"status\": \"CREATED\",\n      \"time\": \"08:00\",\n      \"weekday\": \"Tuesday\"\n    }\n "
+				},
+				"url": {
+					"raw": "http://localhost:1313/match/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"match",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH register batch",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwMTA3MTcsImV4cCI6MTU0MzAyODcxN30.dH5EiXML3TNzC6dX-KOhinlGjFz8NGf-2HDoVSi8X6I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n      \"title\": \"Amistoso Regional\",\n      \"type\": \"Amistoso\",\n      \"time\": \"08:00\",\n      \"date\": \"2018-11-20\",\n      \"weekday\": \"Domingo\",\n      \"location\": \"Rua Engenheiro Bones, 155\",\n      \"homeTeam\": {\"name\": \"Chronos\", \"ownerEmail\" : \"a@a.com\"},\n      \"awayTeam\": {\"name\": \"Real 12 F.S\", \"ownerEmail\" : \"user1@server.com\"},\n      \"homeTeamConfirmation\": true,\n      \"awayTeamConfirmation\": true,\n      \"status\": \"FINISHED\"\n    },\n    {\n      \"title\": \"Amistoso Regional\",\n      \"type\": \"Amistoso\",\n      \"time\": \"20:00\",\n      \"date\": \"2018-11-27\",\n      \"weekday\": \"Quinta-Feira\",\n      \"location\": \"Av. Carlos de Campos, 200\",\n      \"homeTeam\": {\"name\": \"Chronos\", \"ownerEmail\" : \"a@a.com\"},\n      \"awayTeam\": {\"name\": \"Inajar F.C\", \"ownerEmail\" : \"user2@server.com\"},\n      \"homeTeamConfirmation\": true,\n      \"awayTeamConfirmation\": true,\n      \"status\": \"PENDING\"\n    },\n    {\n      \"title\": \"Amistoso Regional\",\n      \"type\": \"Amistoso\",\n      \"time\": \"08:00\",\n      \"date\": \"2018-11-19\",\n      \"weekday\": \"Sexta-Feira\",\n      \"location\": \"Rua Silva Carlos, 155\",\n      \"homeTeam\": {\"name\": \"Chronos\", \"ownerEmail\" : \"a@a.com\"},\n      \"awayTeam\": {\"name\": \"Maloka F.S\", \"ownerEmail\" : \"user3@server.com\"},\n      \"homeTeamConfirmation\": true,\n      \"awayTeamConfirmation\": false,\n      \"status\": \"PENDING\"\n    },\n    {\n      \"title\": \"Amistoso Regional\",\n      \"type\": \"Amistoso\",\n      \"time\": \"08:00\",\n      \"date\": \"2018-11-22\",\n      \"weekday\": \"Quarta-Feira\",\n      \"location\": \"Rua Caetano Alvares, 345\",\n      \"homeTeam\": {\"name\": \"Chronos\", \"ownerEmail\" : \"a@a.com\"},\n      \"awayTeam\": {\"name\": \"Catumbi F.S\", \"ownerEmail\" : \"user4@server.com\"},\n      \"homeTeamConfirmation\": true,\n      \"awayTeamConfirmation\": true,\n      \"status\": \"PENDING\"\n    },\n    {\n      \"title\": \"Amistoso Regional\",\n      \"type\": \"Amistoso\",\n      \"time\": \"08:00\",\n      \"date\": \"2018-11-29\",\n      \"weekday\": \"Domingo\",\n      \"location\": \"Rua Caetano Engenheiro Alvares, 55\",\n      \"homeTeam\": {\"name\": \"Chronos\", \"ownerEmail\" : \"a@a.com\"},\n      \"awayTeam\": {\"name\": \"Giga F.C\", \"ownerEmail\" : \"user5@server.com\"},\n      \"homeTeamConfirmation\": true,\n      \"awayTeamConfirmation\": false,\n      \"status\": \"PENDING\"\n    }\n  ]"
+				},
+				"url": {
+					"raw": "http://localhost:1313/match/register/batch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"match",
+						"register",
+						"batch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDM1MDAzOTgsImV4cCI6MTU0MzUxODM5OH0.5e24O3r8_1OGV17E373x41o8NxCQOieHKqk5PfBsIks",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t \"_id\": \"5bfdebbe8dd87831f06766b6\",\n      \"title\": \"Campeonato Sindical\",\n      \"type\": \"Campeonato\",\n      \"time\": \"08:00\",\n      \"date\": \"2018-11-20\",\n      \"weekday\": \"Domingo\",\n      \"location\": \"Rua Engenheiro Bones, 155\",\n      \"homeTeam\": {\"name\": \"Chronos F.S.\", \"ownerEmail\" : \"a@a.com\"},\n      \"awayTeam\": {\"name\": \"Real 12 F.S\", \"ownerEmail\" : \"user2@server.com\"},\n      \n      \"timeline\": [{\"action\" : \"Gooool!\", \n    \t\t\t   \"actionTime\" : \"12'\", \n    \t\t\t   \"actorName\" : \"G. Bale\", \n    \t\t\t   \"actionDescription\" : \"A beautiful score!\", \n    \t\t\t   \"homeTeamScore\" : \"2\", \n    \t\t\t   \"homeTeamName\" : \"R13 F.S.\", \n    \t\t\t   \"awayTeamScore\" : \"1\",\n    \t\t\t   \"awayTeamName\" : \"Real 12 F.S.\"\n      }],\n      \n      \"lineup\": {\n      \t\t\"home\": {\"manager\" : \"Tiao Carlos\", \"squad\" : { \"players\" : [{\"name\": \"Goleiro Time 1\", \"number\": \"1\"}], \"formation\" : \"4-4-2\" } },\n      \t\t\"away\": {\"manager\" : \"Zezi Neto S\", \"squad\" : { \"players\" : [{\"name\": \"Goleiro Time 2\", \"number\": \"1\"}], \"formation\" : \"4-3-3\" } }\n      },\n      \n      \"stats\": {\n      \t\"home\": {\"shots\" : 4, \"fouls\" : 12, \"corners\" : 2, \"offsides\" : 1, \"yellowCards\" : 1, \"redCards\" : 1},\n      \t\"away\": {\"shots\" : 8, \"fouls\" : 18, \"corners\" : 4, \"offsides\" : 7, \"yellowCards\" : 4, \"redCards\" : 0}\t\n      },\n      \n      \"homeTeamConfirmation\": true,\n      \"awayTeamConfirmation\": true,\n      \"status\": \"PENDING\"\n    } \n "
+				},
+				"url": {
+					"raw": "http://localhost:1313/match/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"match",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH get all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwMTA3MTcsImV4cCI6MTU0MzAyODcxN30.dH5EiXML3TNzC6dX-KOhinlGjFz8NGf-2HDoVSi8X6I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1313/match",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"match"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEAM get challenge",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwMjYzNjIsImV4cCI6MTU0MzA0NDM2Mn0.Dinj2CAmkh8foD85irsV72N7d-DMUyXi7-Nmo36odx8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1313/team/challenge?ownerEmailUser=a@a.com&ownerEmailAdversary=user1@server.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"team",
+						"challenge"
+					],
+					"query": [
+						{
+							"key": "ownerEmailUser",
+							"value": "a@a.com"
+						},
+						{
+							"key": "ownerEmailAdversary",
+							"value": "user1@server.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH get matches season",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YmY4NjZlMWQ0YWUxMWRlNjA5NDJjNjkiLCJpYXQiOjE1NDMwMDkzMDksImV4cCI6MTU0MzAyNzMwOX0.TVub0ZVroTz-FimhROxonSRfzIj4arwSrR6lm2sgAv4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1313/match/season?ownerEmail=a@a.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1313",
+					"path": [
+						"match",
+						"season"
+					],
+					"query": [
+						{
+							"key": "ownerEmail",
+							"value": "a@a.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH cancel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCH accept",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "50cbb86a-1d29-47ce-b01e-b59d6f694aee",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9512f7af-2cd8-4214-b6d4-a6949a0fdef0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
